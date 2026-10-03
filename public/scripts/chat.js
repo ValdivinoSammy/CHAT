@@ -16,7 +16,7 @@ const divsOptions = document.getElementsByClassName("divs-options");
 const cards = document.getElementsByClassName("cards");
 
 const logOut = document.getElementById("LogOut");
-const socket = io("http://192.168.1.2:5000");
+const socket = io("https://chat-4ba7.onrender.com");
 
 
 const token = localStorage.getItem("tokenCHAT");
