@@ -90,7 +90,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/verificar",
         { headers: { "auth-token": token } });
     if (resposta.ok) {
-        window.location.href = "chat.html";
+        window.location.href = "./public/chat.html";
     } else {
         localStorage.removeItem("tokenCHAT");
         if (userVelhoDoChat) tradeCard.click();
@@ -104,5 +104,5 @@ tudoCerto = async function (resposta) {
     localStorage.setItem("usuarioName_chat", usuario);
     localStorage.setItem("tokenCHAT", token);
     localStorage.setItem("userVelhoDoChat", true);
-    window.location.href = "chat.html";
+    window.location.href = "./public/chat.html";
 }

@@ -190,7 +190,7 @@ function hiddenAndDisabledBtn() {
 window.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("tokenCHAT");
     if (!token) {
-        window.location.href = "./";
+        window.location.href = "../index.html";
         return
     };
 
@@ -198,7 +198,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         { headers: { "auth-token": token } });
     if (!resposta.ok) {
         localStorage.removeItem("tokenCHAT");
-        window.location.href = "./";
+        window.location.href = "../index.html";
         return
     }
 
@@ -237,7 +237,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     logOut.addEventListener("click", () => {
         localStorage.removeItem("tokenCHAT");
         localStorage.removeItem("usuarioName_chat");
-        window.location.href = "./";
+        window.location.href = "../index.html";
     })
 
     let userVez;
