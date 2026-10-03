@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+    <title>CHAT</title>
+</head>
+
+<body>
+    <div id="caixa">
+        
+        <div id="topBarChat">
+            <img src="./imagens/Out.png" id="LogOut">
+            <strong id="chatName"></strong>
+            <img alt="3 pontinhos" id="imgOptions" src="./imagens/menu.svg">
+        </div>
+
+        <div id="mensagens">
+        </div>
+
+        <form id="form">
+            <input type="text" id="text-campo" placeholder="✎">
+            <button type="button" id="enviar" disabled>➤</button>
+        </form>
+    </div>
+    <div id="card-options" class="cards" style="display: none;">
+        <small id="fechar-options" class="fechar">❌</small>
+        <h2>CONFIGURAÇÕES</h2>
+        <div class="divs-options" id="darkMode">Modo escuro ☾☼</div>
+        <div class="divs-options" id="lightMode" style="display: none;">Modo claro ☾☀︎</div>
+        <div class="divs-options" id="altChatName">Alterar nome do grupo</div>
+        <div class="divs-options" id="delMsgs">Apagar mensagens</div>
+    </div>
+    <div id="card-chatName" class="cards" style="display: none;">
+        <small id="fechar-altname" class="fechar">❌</small>
+        <input type="text" id="newName-campo" name="novoNome" placeholder="Novo nome para o chat" required>
+        <button type="button" id="alterar">Alterar</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./scripts/chat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="card-register" class="card" >
+            <form>
+                <h2>Registre sua conta ✉</h2>
+                <input type="text" name="nome" id="userNomeR" placeholder="Nome de Usuario">
+                <input type="text" name="email" id="userEmailR" placeholder="Email">
+                <input type="password" name="senha" id="userSenhaR" placeholder="Senha">
+                <div id="divbtn">
+                    <button type="button" id="registrar">Criar</button>
+                </div>
+            </form>
+        </div>
+        
+
+        <div id="card-login" class="card" style="display: none;">
+            <form>
+                <h2>Entre em sua conta 🔒︎</h2>
+                <input type="text" name="email" id="userEmailL" placeholder="Email">
+                <input type="password" name="senha" id="userSenhaL" placeholder="Senha">
+                <div id="divbtn">
+                    <button type="button" id="logar">Entrar</button>
+                </div>
+            </form>
+        </div>
+        <a id="alter-LR">Já é registrado(a)? Faça seu login.</a>
+
+
+
+    </div>
+
+
+    <script src="./scripts/login.js"></script>
+</body>
+
+</html>
