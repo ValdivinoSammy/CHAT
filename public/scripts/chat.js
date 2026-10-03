@@ -72,7 +72,7 @@ function mostrarMsgs(dados) {
 };
 
 async function buscarAllMsgs(log) {
-    const resposta = await fetch("http://192.168.1.2:3000/user/getAllMessages",
+    const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/getAllMessages",
         { headers: { "auth-token": token } });
     if (!resposta.ok) {
         const error = resposta.text();
@@ -141,7 +141,7 @@ if (DMO === "true") { darkModeOn() };
 
 
 async function chatNameAlt() {
-    const resposta = await fetch(`http://192.168.1.2:3000/admin/tradeName?nome=${ChatName.innerText}`,
+    const resposta = await fetch(`https://api-login-jwt-mepp.onrender.com/admin/tradeName?nome=${ChatName.innerText}`,
         {
             method: "PUT",
             headers: {
@@ -161,7 +161,7 @@ async function chatNameAlt() {
 }
 
 async function delAllMsgs() {
-    const resposta = await fetch("http://192.168.1.2:3000/admin/msgDel",
+    const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/admin/msgDel",
         {
             method: "DELETE",
             headers: { "auth-token": token },
@@ -194,7 +194,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         return
     };
 
-    const resposta = await fetch("http://192.168.1.2:3000/user/verificar",
+    const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/verificar",
         { headers: { "auth-token": token } });
     if (!resposta.ok) {
         localStorage.removeItem("tokenCHAT");
@@ -202,12 +202,12 @@ window.addEventListener("DOMContentLoaded", async () => {
         return
     }
 
-    const res = await fetch("http://192.168.1.2:3000/user/getChatName",
+    const res = await fetch("https://api-login-jwt-mepp.onrender.com/user/getChatName",
         { headers: { "auth-token": token } });
     const chatName = await res.json();
     ChatName.innerText = chatName[0].nome;
 
-    const response = await fetch("http://192.168.1.2:3000/admin",
+    const response = await fetch("https://api-login-jwt-mepp.onrender.com/admin",
         { headers: { "auth-token": token } });
     const iAmAdmin = await response.json();
     if (!iAmAdmin) {
@@ -252,7 +252,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         userVez = mensagem.user;
         if (userVez === ultimoUser) { mensagem.user = ""; }
 
-        const resposta = await fetch("http://192.168.1.2:3000/user/message",
+        const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/message",
             {
                 method: "POST",
                 headers: {

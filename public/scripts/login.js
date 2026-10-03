@@ -19,7 +19,7 @@ let loginOuRegis = false
 
 btnLogin.addEventListener("click", async () => {
     try {
-        const resposta = await fetch("http://192.168.1.2:3000/user/login", {
+        const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -42,7 +42,7 @@ btnLogin.addEventListener("click", async () => {
 
 btnRegister.addEventListener("click", async () => {
     try {
-        const resposta = await fetch("http://192.168.1.2:3000/user/register", {
+        const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         if (userVelhoDoChat) tradeCard.click();
         return};
 
-    const resposta = await fetch("http://192.168.1.2:3000/user/verificar",
+    const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/verificar",
         { headers: { "auth-token": token } });
     if (resposta.ok) {
         window.location.href = "chat.html";
