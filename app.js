@@ -30,7 +30,8 @@ const io = socketIO(server, {
 });
 
 
-
+let userVez;
+let ultimoUser;
 io.on("connect", socket => {
 
     // avisando para os usuarios online que alguem entrou no chat
@@ -42,8 +43,7 @@ io.on("connect", socket => {
 
 
     // recebe a mensagem do usuario e manda para todos os outros
-    let userVez;
-    let ultimoUser;
+    
     socket.on("msg_client", mensagem => {
 
         userVez = mensagem.user;

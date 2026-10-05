@@ -208,7 +208,7 @@ function hiddenAndDisabledBtn() {
     btnEnviar.style.color = "#fff";
 }
 
-async function pushMessageForMongo() {
+async function pushMessageForMongo(mensagem) {
     const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/message",
         {
             method: "POST",
