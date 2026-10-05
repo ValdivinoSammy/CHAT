@@ -42,11 +42,16 @@ io.on("connect", socket => {
 
 
     // recebe a mensagem do usuario e manda para todos os outros
-
+    let userVez;
+    let ultimoUser;
     socket.on("msg_client", mensagem => {
 
-        io.emit("msg_server", mensagem);
+        userVez = mensagem.user;
+        if (userVez === ultimoUser) { mensagem.user = ""; }
 
+        socket.emit("msg_server_push", mensagem);
+        io.emit("msg_server", mensagem);
+        ultimoUser = userVez;
     });
 
     // recebendo o aviso de que o nome do chat/grupo foi alterado

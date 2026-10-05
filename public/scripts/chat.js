@@ -43,6 +43,10 @@ socket.on("msg_server_aviso", msg => {
     mensagens.appendChild(aviso);
 })
 
+socket.on("msg_server_push", mensagem => {
+    pushMessageForMongo(mensagem)
+})
+
 
 //-------Funções------- 
 
@@ -60,10 +64,20 @@ function mostrarMsgs(dados) {
         mensagens.appendChild(cardUser);
         mensagens.scrollTop = mensagens.scrollHeight;
     } else {
-        msgCard = `
-                <h3>${dados.user}</h3>
-                <p>${dados.msg}</p>
+        if (dados.user === "") {
+            msgCard = `
+                <div class="bgc">
+                    <p>${dados.msg}</p>
+                </div>
               `;
+        } else {
+            msgCard = `
+                <div class="bgc">
+                    <h3>${dados.user}</h3>
+                    <p>${dados.msg}</p>
+                </div>
+              `;
+        }
         cardUser.innerHTML = msgCard
         mensagens.appendChild(cardUser);
         mensagens.scrollTop = mensagens.scrollHeight;
@@ -85,10 +99,20 @@ async function buscarAllMsgs(log) {
         let msgCard = "";
         const cardUser = document.createElement("div");
         if (log.id !== usuario) {
-            msgCard = `
-                <h3>${log.user}</h3>
-                <p >${log.msg}</p>
+            if (log.user === "") {
+                msgCard = `
+                <div class="bgc">
+                    <p>${log.msg}</p>
+                </div>
               `;
+            } else {
+                msgCard = `
+                <div class="bgc">
+                    <h3>${log.user}</h3>
+                    <p >${log.msg}</p>
+                </div>
+              `;
+            }
             cardUser.innerHTML = msgCard
             mensagens.appendChild(cardUser);
             mensagens.scrollTop = mensagens.scrollHeight;
@@ -184,6 +208,27 @@ function hiddenAndDisabledBtn() {
     btnEnviar.style.color = "#fff";
 }
 
+async function pushMessageForMongo() {
+    const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/message",
+        {
+            method: "POST",
+            headers: {
+                "auth-token": token,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: mensagem.id,
+                user: mensagem.user,
+                msg: mensagem.msg
+            })
+        });
+    if (!resposta.ok) {
+        const error = await resposta.text();
+        alert("Houve um erro: " + error);
+        return
+    };
+};
+
 
 // -----após a pagina carregar------
 
@@ -240,38 +285,15 @@ window.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "../index.html";
     })
 
-    let userVez;
-    let ultimoUser;
 
-    btnEnviar.addEventListener("click", async () => {
+    btnEnviar.addEventListener("click", () => {
         let mensagem = {
             id: usuario,
             user: usuario,
             msg: textCampo.value
         };
-        userVez = mensagem.user;
-        if (userVez === ultimoUser) { mensagem.user = ""; }
 
-        const resposta = await fetch("https://api-login-jwt-mepp.onrender.com/user/message",
-            {
-                method: "POST",
-                headers: {
-                    "auth-token": token,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    id: mensagem.id,
-                    user: mensagem.user,
-                    msg: mensagem.msg
-                })
-            });
-        if (!resposta.ok) {
-            const error = await resposta.text();
-            alert("Houve um erro: " + error);
-            return
-        };
         socket.emit("msg_client", mensagem);
-        ultimoUser = userVez;
 
         textCampo.value = "";
         hiddenAndDisabledBtn();
