@@ -5,13 +5,17 @@ const ChatName = document.getElementById("chatName");
 const btnOptions = document.getElementById("imgOptions");
 const cardOptions = document.getElementById("card-options");
 const cardChatName = document.getElementById("card-chatName");
+const cardAltBG = document.getElementById("card-alterBG");
 const fecharOptions = document.getElementById("fechar-options");
 const fecharAltname = document.getElementById("fechar-altname");
+const fecharAltBG = document.getElementById("fechar-alterBG");
 const alterar = document.getElementById("alterar");
 const darkMode = document.getElementById("darkMode");
 const lightMode = document.getElementById("lightMode");
 const altChatName = document.getElementById("altChatName");
+const altBG = document.getElementById("altBG");
 const delMsgs = document.getElementById("delMsgs");
+
 const divsOptions = document.getElementsByClassName("divs-options");
 const cards = document.getElementsByClassName("cards");
 
@@ -21,8 +25,25 @@ const socket = io("https://chat-4ba7.onrender.com");
 
 const token = localStorage.getItem("tokenCHAT");
 const usuario = localStorage.getItem("usuarioName_chat");
+const lastBG = localStorage.getItem("BG_image_CHAT");
+if (lastBG) { mensagens.style.backgroundImage = lastBG };
 
-
+let backgrounds = ['url("./imagens/msgBackgrounds/cat.png")',
+    'url("./imagens/msgBackgrounds/kuromi.webp")',
+    'url("./imagens/msgBackgrounds/hsr.png")',
+    'url("./imagens/msgBackgrounds/cinnamoroll.jpg")',
+    'url("./imagens/msgBackgrounds/clouds.jpg")',
+    'url("./imagens/msgBackgrounds/cyrene.jpg")',
+    'url("./imagens/msgBackgrounds/cyrene2.jpg")',
+    'url("./imagens/msgBackgrounds/darkcats.jpg")',
+    'url("./imagens/msgBackgrounds/flowers.jpg")',
+    'url("./imagens/msgBackgrounds/kirb.jpg")',
+    'url("./imagens/msgBackgrounds/mymelody.jpg")',
+    'url("./imagens/msgBackgrounds/night.jpg")',
+    'url("./imagens/msgBackgrounds/phainon.jpg")',
+    'url("./imagens/msgBackgrounds/sparxie.jpg")',
+    'url("./imagens/msgBackgrounds/stars.jpg")',
+];
 
 socket.on("msg_server_allMsg", () => {
     buscarAllMsgs();
@@ -229,6 +250,14 @@ async function pushMessageForMongo(mensagem) {
     };
 };
 
+function BGalt(BG) {
+    let bgEscolhido = backgrounds.filter(background => {
+        return background === BG;
+    });
+    mensagens.style.backgroundImage = bgEscolhido[0];
+    cardAltBG.style.display = "none";
+    localStorage.setItem("BG_image_CHAT", bgEscolhido[0]);
+};
 
 // -----após a pagina carregar------
 
@@ -265,6 +294,15 @@ window.addEventListener("DOMContentLoaded", async () => {
         fecharOptions.addEventListener("click", () => { cardOptions.style.display = "none"; });
         darkMode.addEventListener("click", darkModeOn);
         lightMode.addEventListener("click", lightModeOn);
+        altBG.addEventListener("click", () => {
+            cardAltBG.style.display = "";
+            cardOptions.style.display = "none";
+            fecharAltBG.addEventListener("click", () => {
+                cardAltBG.style.display = "none";
+                cardOptions.style.display = "";
+            });
+            backgrounds.forEach(bg => { document.getElementById(bg).addEventListener("click", () => { BGalt(bg) }); });
+        })
         if (iAmAdmin) {
             altChatName.addEventListener("click", () => {
                 cardChatName.style.display = "";

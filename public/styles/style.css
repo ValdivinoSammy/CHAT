@@ -14,6 +14,7 @@ body {
     max-width: 600px;
     height: 100vh;
 
+    position: relative;
 
     margin: auto;
     padding: 10px 20px;
@@ -77,9 +78,9 @@ body {
 
    overflow-y: auto;
 
-   background-image: url("../imagens/msgBackgrounds/msgbackground.png");
    background-repeat: no-repeat;
    background-size: cover;
+   background-position: center;
 }
 
 #mensagens::-webkit-scrollbar {
@@ -121,9 +122,9 @@ body {
 h3 {
     padding-left: 5px;
 
-    color: white;
+    color: rgb(252, 147, 98);
 
-    text-shadow: 3px 3px 2px  #111;
+    font-size: 1.10em;
 }
 
 .bgc {
@@ -176,23 +177,37 @@ b {
 
     padding: 40px 20px;
 
-    max-width: 300px;
-    min-height: 40%;
+    width: 90%;
+    max-height: 98%;
+    
 
     text-align: center;
 /* --------------------- */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 10px;
+    gap: 10px; 
 }
-#card-options h2 {
+
+.card-title {
     flex: 0.6;
     color: white;
     text-shadow: 3px 2px 2px black;
 }
 
-#card-options div {
+.container-div-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    overflow-y: auto;
+    padding: 10px 0px;
+}
+
+.container-div-option::-webkit-scrollbar {
+    display: none;
+}
+
+.divs-options {
     padding: 10px;
 
     border: 1px solid black;
@@ -204,7 +219,7 @@ b {
     transition: all 300ms;
 }
 
-#card-options div:hover {
+.divs-options:hover {
     cursor: pointer;
     border-radius: 25px;
 
@@ -212,6 +227,8 @@ b {
 }
 
 .fechar {
+    width: 30px;
+    
     position: absolute;
     top: 5px;
     right: 5px;

@@ -10,34 +10,60 @@
 
 <body>
     <div id="caixa">
-        
+
         <div id="topBarChat">
             <img src="./imagens/Out.png" id="LogOut">
             <strong id="chatName"></strong>
             <img alt="3 pontinhos" id="imgOptions" src="./imagens/menu.svg">
         </div>
 
-        <div id="mensagens">
-        </div>
+        <div id="mensagens" style='background-image: url("./imagens/msgBackgrounds/cat.png");'>
+        </div> 
 
         <form id="form">
             <input type="text" id="text-campo" placeholder="✎">
             <button type="button" id="enviar" disabled>➤</button>
         </form>
+
+        <div id="card-options" class="cards" style="display: none;">
+            <img id="fechar-options" class="fechar" src="./imagens/close.png">
+            <h2 class="card-title">CONFIGURAÇÕES</h2>
+            <div class="container-div-option">
+                <div class="divs-options" id="darkMode">Modo escuro ☾☼</div>
+                <div class="divs-options" id="lightMode" style="display: none;">Modo claro ☾☀︎</div>
+                <div class="divs-options" id="altBG">Alterar background CHAT</div>
+                <div class="divs-options" id="altChatName">Alterar nome do grupo</div>
+                <div class="divs-options" id="delMsgs">Apagar mensagens</div>
+            </div>
+        </div>
+        <div id="card-chatName" class="cards" style="display: none;">
+            <img id="fechar-altname" class="fechar" src="./imagens/close.png">
+            <input type="text" id="newName-campo" name="novoNome" placeholder="Novo nome para o chat" required>
+            <button type="button" id="alterar">Alterar</button>
+        </div>
+        <div id="card-alterBG" class="cards" style="display: none;">
+            <img id="fechar-alterBG" class="fechar" src="./imagens/close.png">
+            <h2 class="card-title">BACKGROUNDS</h2>
+            <div class="container-div-option">
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/cat.png")'>Gato fofo</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/kuromi.webp")'>Kuromi</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/hsr.png")'>Star Rail</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/cinnamoroll.jpg")'>Cinnamoroll</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/clouds.jpg")'>Nuvens</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/cyrene.jpg")'>Cyrene HSR</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/cyrene2.jpg")'>CyreneV2 HSR</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/darkcats.jpg")'>Gato sombrio</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/flowers.jpg")'>Flores</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/kirb.jpg")'>Kirb</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/mymelody.jpg")'>My melody</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/night.jpg")'>Noite</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/phainon.jpg")'>Phainon HSR</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/sparxie.jpg")'>Sparxie HSR</div>
+                <div class="divs-options" id='url("./imagens/msgBackgrounds/stars.jpg")'>Estrelas</div>
+            </div>
+        </div>
     </div>
-    <div id="card-options" class="cards" style="display: none;">
-        <small id="fechar-options" class="fechar">❌</small>
-        <h2>CONFIGURAÇÕES</h2>
-        <div class="divs-options" id="darkMode">Modo escuro ☾☼</div>
-        <div class="divs-options" id="lightMode" style="display: none;">Modo claro ☾☀︎</div>
-        <div class="divs-options" id="altChatName">Alterar nome do grupo</div>
-        <div class="divs-options" id="delMsgs">Apagar mensagens</div>
-    </div>
-    <div id="card-chatName" class="cards" style="display: none;">
-        <small id="fechar-altname" class="fechar">❌</small>
-        <input type="text" id="newName-campo" name="novoNome" placeholder="Novo nome para o chat" required>
-        <button type="button" id="alterar">Alterar</button>
-    </div>
+
     <script src="https://chat-4ba7.onrender.com/socket.io/socket.io.js"></script>
     <script src="./scripts/chat.js"></script>
 </body>
