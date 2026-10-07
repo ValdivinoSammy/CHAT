@@ -7,9 +7,9 @@ const socketIO = require('socket.io');
 
 
 
-app.get("/", (req, res) => { res.sendFile(path.join(__dirname, "index.html")) });
+app.get(["/","/index.html"], (req, res) => { res.sendFile(path.join(__dirname, "index.html")) });
 
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 
 
@@ -61,5 +61,9 @@ io.on("connect", socket => {
             io.emit("msg_server_reload", newNome);
         io.emit("msg_server_reload");
     });
+
+    socket.on("msg_client_tradeNick", dados=>{
+        socket.broadcast.emit("msg_server_tradeNick", `${dados.user} acabou de alterar seu apelido para ${dados.newNick}, atualize a pagina para melhor experiência`)
+    })
 })
 

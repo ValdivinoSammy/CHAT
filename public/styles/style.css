@@ -240,7 +240,7 @@ b {
     cursor: pointer;
 } 
 
-#card-chatName input {
+.inputs-cards {
     padding: 5px;
     
     font-size: 18px;
@@ -249,7 +249,7 @@ b {
     border-radius: 10px;
 }
 
-#card-chatName button{
+.btns-cards{
     padding: 10px;
     margin-top: 30px;
 
@@ -260,7 +260,7 @@ b {
     transition: all 300ms;
 }
 
-#card-chatName button:hover {
+.btns-cards:hover {
     cursor: pointer;
     border-radius: 25px;
 }

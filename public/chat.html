@@ -32,15 +32,22 @@
                 <div class="divs-options" id="darkMode">Modo escuro ☾☼</div>
                 <div class="divs-options" id="lightMode" style="display: none;">Modo claro ☾☀︎</div>
                 <div class="divs-options" id="altBG">Alterar background CHAT</div>
+                <div class="divs-options" id="altNick">Alterar Apelido</div>
                 <div class="divs-options" id="altChatName">Alterar nome do grupo</div>
                 <div class="divs-options" id="delMsgs">Apagar mensagens</div>
             </div>
         </div>
         <div id="card-chatName" class="cards" style="display: none;">
             <img id="fechar-altname" class="fechar" src="./imagens/close.png">
-            <input type="text" id="newName-campo" name="novoNome" placeholder="Novo nome para o chat" required>
-            <button type="button" id="alterar">Alterar</button>
+            <input type="text" id="newName-campo" class="inputs-cards" name="novoNome" placeholder="Novo nome para o chat" required>
+            <button type="button" id="alterar" class="btns-cards">Alterar</button>
         </div>
+        <div id="card-altApelido" class="cards" style="display: none;">
+            <img id="fechar-altApelido" class="fechar" src="./imagens/close.png">
+            <input type="text" id="newApelido-campo" class="inputs-cards" name="newNick" placeholder="Seu novo apelido" required>
+            <button type="button" id="alterar-apelido" class="btns-cards">Alterar</button>
+        </div>
+
         <div id="card-alterBG" class="cards" style="display: none;">
             <img id="fechar-alterBG" class="fechar" src="./imagens/close.png">
             <h2 class="card-title">BACKGROUNDS</h2>

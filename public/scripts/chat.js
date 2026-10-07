@@ -6,14 +6,18 @@ const btnOptions = document.getElementById("imgOptions");
 const cardOptions = document.getElementById("card-options");
 const cardChatName = document.getElementById("card-chatName");
 const cardAltBG = document.getElementById("card-alterBG");
+const cardAltApelido = document.getElementById("card-altApelido");
 const fecharOptions = document.getElementById("fechar-options");
 const fecharAltname = document.getElementById("fechar-altname");
 const fecharAltBG = document.getElementById("fechar-alterBG");
+const fecharAltApelido = document.getElementById("fechar-altApelido");
 const alterar = document.getElementById("alterar");
+const alterarApelido = document.getElementById("alterar-apelido");
 const darkMode = document.getElementById("darkMode");
 const lightMode = document.getElementById("lightMode");
 const altChatName = document.getElementById("altChatName");
 const altBG = document.getElementById("altBG");
+const altNick = document.getElementById("altNick");
 const delMsgs = document.getElementById("delMsgs");
 
 const divsOptions = document.getElementsByClassName("divs-options");
@@ -66,6 +70,12 @@ socket.on("msg_server_aviso", msg => {
 
 socket.on("msg_server_push", mensagem => {
     pushMessageForMongo(mensagem)
+})
+
+socket.on("msg_server_tradeNick", msg =>{
+    const aviso = document.createElement("b");
+    aviso.innerText = msg;
+    mensagens.appendChild(aviso);
 })
 
 
@@ -259,6 +269,29 @@ function BGalt(BG) {
     localStorage.setItem("BG_image_CHAT", bgEscolhido[0]);
 };
 
+async function apelidoAlt() {
+    const resposta = await fetch(`https://api-login-jwt-mepp.onrender.com/user/tradeNick?nome=${usuario}`,
+        {
+            method: "PUT",
+            headers: {
+                "auth-token": token,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                newNick: document.getElementById("newApelido-campo").value
+            })
+        });
+    if (!resposta.ok) {
+        let error = await resposta.text();
+        alert("Erro: " + error);
+        return;
+    };
+    let newApelido = await resposta.text();
+    alert("Seu apelido foi alterado para: "+newApelido+ ", porém será necessário que você faça login novamente.");
+    socket.emit("msg_client_tradeNick", {user: usuario, newNick: newApelido});
+    logOut.click();
+}
+
 // -----após a pagina carregar------
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -302,7 +335,16 @@ window.addEventListener("DOMContentLoaded", async () => {
                 cardOptions.style.display = "";
             });
             backgrounds.forEach(bg => { document.getElementById(bg).addEventListener("click", () => { BGalt(bg) }); });
-        })
+        });
+        altNick.addEventListener("click", () => {
+            cardAltApelido.style.display = "";
+            cardOptions.style.display = "none";
+            fecharAltApelido.addEventListener("click", () => {
+                cardAltApelido.style.display = "none";
+                cardOptions.style.display = "";
+            });
+            alterarApelido.addEventListener("click", apelidoAlt);
+        });
         if (iAmAdmin) {
             altChatName.addEventListener("click", () => {
                 cardChatName.style.display = "";
