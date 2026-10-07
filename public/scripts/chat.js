@@ -66,6 +66,7 @@ socket.on("msg_server_aviso", msg => {
     const aviso = document.createElement("b");
     aviso.innerText = msg;
     mensagens.appendChild(aviso);
+    mensagens.scrollTop = mensagens.scrollHeight;
 })
 
 socket.on("msg_server_push", mensagem => {
@@ -76,6 +77,7 @@ socket.on("msg_server_tradeNick", msg =>{
     const aviso = document.createElement("b");
     aviso.innerText = msg;
     mensagens.appendChild(aviso);
+    mensagens.scrollTop = mensagens.scrollHeight;
 })
 
 
@@ -278,7 +280,7 @@ async function apelidoAlt() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                newNick: document.getElementById("newApelido-campo").value
+                newNick: document.getElementById("newApelido-campo").value.trim()
             })
         });
     if (!resposta.ok) {
